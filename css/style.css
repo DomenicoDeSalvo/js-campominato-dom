@@ -1,0 +1,108 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* LAYOUT */
+.app{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body{
+    background-color: aquamarine;
+    font-family: "Open Sans", sans-serif;
+}
+
+.container{
+    max-width:60%;
+    margin: 0 auto;
+}
+
+.container_lg{
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.hide{
+    display: none;
+}
+
+/* HEADER */
+
+header{
+    background-color: white;
+}
+
+.header_section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+}
+
+.submit{
+    padding:0 30px ;
+    cursor: pointer;
+}
+
+.difficulties{
+    width: 140px;
+    padding-left: 10px;
+}
+
+/* GRID LAYOUT */
+
+main{
+    flex-grow: 1;
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 60px 0;
+}
+
+.cell{
+    border: 1px solid black;
+    aspect-ratio: 1;
+    width: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.colored{
+    background-color: lightblue;
+}
+
+/* DIFFICULTIES */
+.difficulty1{
+    width: calc(100% / 10);
+}
+
+.difficulty2{
+    width: calc(100% / 9);
+}
+
+.difficulty3{
+    width: calc(100% / 7);
+}
+
+/* FOOTER */
+
+footer{
+    background-color: white;
+    padding: 24px 0;
+}
