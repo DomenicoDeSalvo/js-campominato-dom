@@ -48,15 +48,16 @@ function generateGrid(){
         
         //Inserire le celle nel DOM.
         gridElement.append(cellElement);
-        
-        //Quando si clicca su una cella essa si colora di azzurro, se vi è una bomba, si colora di rosso.
+
+       //Quando si clicca su una cella essa si colora di azzurro, se vi è una bomba, si colora di rosso.
         cellElement.addEventListener('click', function (){
             
             cellElement.classList.add('clicked');
             if(bombsArray.includes(num)){
                 cellElement.classList.add('bomb');
-            } else {
 
+            } else {
+                
                 cellElement.classList.add('colored');
             }
             //Viene stampato un console log in cui si dichiare quale cella è stata cliccata.
@@ -78,26 +79,6 @@ function gridSize(number){
     return size
 }
 
-// //Funzione che avrà il compito di generare le posizioni delle bombe.
-// function bombsPosition(number){
-
-//     //Il numero minimo sarà 1.
-//     const min = 1;//Number
-//     //Il numero massimo corrisponderà al numero delle caselle della griglia per il dato livello.
-//     const max = gridSize(difficulty); //Number
-//     const bombs = number; //Number
-//     const bombsArray = []; //Array
-//     //Ciclo while per determinare i numei.
-//     while(bombsArray.length < bombs){
-//         //Generazione nuovo numero.
-//         const bombPosition = Math.floor(Math.random() * max) + min;
-//         //Controllare che non sia già nell'array.
-//         if(bombsArray.includes(bombPosition) === false){
-//             bombsArray.push(bombPosition);
-//         }    
-//     }
-//     return bombsArray
-// }
 
 
 
