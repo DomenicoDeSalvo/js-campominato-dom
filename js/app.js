@@ -10,15 +10,29 @@ let difficulty = '';//string
 // Acquisizione dell div.
 const gridElement = document.querySelector('.grid');//Element||Null
 //All'apertura della pagina sarà già presente una prima griglia.
-generateGrid()
+generateGrid();
 //Assegnazione del valore al click.
 submitElement.addEventListener('click', generateGrid);
 function generateGrid(){
     //Cliccando il bottone la griglia prevedente sparirà per lasciare spazio ad una nuova.
     gridElement.innerHTML = ('');
-
     difficulty = difficultyElement.value;//string
-
+    //Quando la griglia viene generate vengono generate anche le bombe.
+    //Il numero minimo sarà 1.
+    const min = 1;//Number
+    //Il numero massimo corrisponderà al numero delle caselle della griglia per il dato livello.
+    const max = gridSize(difficulty); //Number
+    const bombs = 16; //Number
+    const bombsArray = []; //Array
+    //Ciclo while per determinare i numeri.
+    while(bombsArray.length < 16){
+        //Generazione nuovo numero.
+        const bombPosition = Math.floor(Math.random() * max) + min;
+        //Controllare che non sia già nell'array.
+        if(bombsArray.includes(bombPosition) === false){
+            bombsArray.push(bombPosition);
+        }    
+    }
     // In base alla difficoltà verrà generata una griglia di dimensioni diverse.
     for(let i = 0; i < gridSize(difficulty); i++){
         
@@ -35,9 +49,16 @@ function generateGrid(){
         //Inserire le celle nel DOM.
         gridElement.append(cellElement);
         
-        //Quando si clicca su una cella essa si colora di azzurro, cliccando una seconda volta il colore torna normale.
-        cellElement.addEventListener('click', function(){
-            cellElement.classList.toggle('colored');
+        //Quando si clicca su una cella essa si colora di azzurro, se vi è una bomba, si colora di rosso.
+        cellElement.addEventListener('click', function (){
+            
+            cellElement.classList.add('clicked');
+            if(bombsArray.includes(num)){
+                cellElement.classList.add('bomb');
+            } else {
+
+                cellElement.classList.add('colored');
+            }
             //Viene stampato un console log in cui si dichiare quale cella è stata cliccata.
             console.log('È stata cliccata la cella numero ' + num);
         })
@@ -57,29 +78,27 @@ function gridSize(number){
     return size
 }
 
-//Funzione che avrà il compito di generare le posizioni delle bombe.
-function bombsPosition(number){
+// //Funzione che avrà il compito di generare le posizioni delle bombe.
+// function bombsPosition(number){
 
-    //Il numero minimo sarà 1.
-    const min = 1;//Number
-    //Il numero massimo corrisponderà al numero delle caselle della griglia per il dato livello.
-    const max = gridSize(difficulty); //Number
-    const bombs = number; //Number
-    const bombsArray = []; //Array
-    //Ciclo while per determinare i numei.
-    while(bombsArray.length < bombs){
-        //Generazione nuovo numero.
-        const bombPosition = Math.floor(Math.random() * max) + min;
-        //Controllare che non sia già nell'array.
-        if(bombsArray.includes(bombPosition) === false){
-            bombsArray.push(bombPosition);
-        }    
-    }
-    return bombsArray
-}
+//     //Il numero minimo sarà 1.
+//     const min = 1;//Number
+//     //Il numero massimo corrisponderà al numero delle caselle della griglia per il dato livello.
+//     const max = gridSize(difficulty); //Number
+//     const bombs = number; //Number
+//     const bombsArray = []; //Array
+//     //Ciclo while per determinare i numei.
+//     while(bombsArray.length < bombs){
+//         //Generazione nuovo numero.
+//         const bombPosition = Math.floor(Math.random() * max) + min;
+//         //Controllare che non sia già nell'array.
+//         if(bombsArray.includes(bombPosition) === false){
+//             bombsArray.push(bombPosition);
+//         }    
+//     }
+//     return bombsArray
+// }
 
-const bombs = bombsPosition(16)
-console.log(bombs)
 
 
 
