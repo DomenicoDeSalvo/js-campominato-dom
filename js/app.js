@@ -18,7 +18,7 @@ function generateGrid(){
     gridElement.innerHTML = ('');
 
     difficulty = difficultyElement.value;//string
-    
+
     // In base alla difficoltà verrà generata una griglia di dimensioni diverse.
     for(let i = 0; i < gridSize(difficulty); i++){
         
@@ -56,3 +56,39 @@ function gridSize(number){
     }
     return size
 }
+
+//Funzione che avrà il compito di generare le posizioni delle bombe.
+function bombsPosition(number){
+
+    //Il numero minimo sarà 1.
+    const min = 1;//Number
+    //Il numero massimo corrisponderà al numero delle caselle della griglia per il dato livello.
+    const max = gridSize(difficulty); //Number
+    const bombs = number; //Number
+    const bombsArray = []; //Array
+    //Ciclo while per determinare i numei.
+    while(bombsArray.length < bombs){
+        //Generazione nuovo numero.
+        const bombPosition = Math.floor(Math.random() * max) + min;
+        //Controllare che non sia già nell'array.
+        if(bombsArray.includes(bombPosition) === false){
+            bombsArray.push(bombPosition);
+        }    
+    }
+    return bombsArray
+}
+
+const bombs = bombsPosition(16)
+console.log(bombs)
+
+
+
+
+
+
+
+
+
+
+
+
