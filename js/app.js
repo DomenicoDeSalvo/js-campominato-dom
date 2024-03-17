@@ -9,6 +9,9 @@ let difficulty = '';//string
 // La griglia sarà formata da quadrati uguali che si troveranno all'interno del div con classe grid del DOM
 // Acquisizione dell div.
 const gridElement = document.querySelector('.grid');//Element||Null
+//Quando la partita termina viene mostrato un messaggio in cui vi è anche il punteggio finale.
+//Acquisizione div.
+const proclamationElement = document.querySelector('.proclamation');//Element || Null
 //All'apertura della pagina sarà già presente una prima griglia.
 generateGrid();
 //Assegnazione del valore al click.
@@ -86,7 +89,19 @@ function generateGrid(){
                    }
                 }
                 //L'utente ha perso.
-                alert(`Hai perso, il tuo punteggio è ${score}`)
+                if(score === 0){
+                    proclamationElement.innerHTML = `Hai perso. 
+                <br>
+                Non hai fatto nessun punto`;
+                } else if(score === 1){
+                    proclamationElement.innerHTML = `Hai perso. 
+                <br>
+                Hai totalizzato  ${score} punto.`;
+                } else {
+                proclamationElement.innerHTML = `Hai perso. 
+                <br>
+                Hai totalizzato  ${score} punti.`;
+                }
             
             // La cella non contiene una bomba.
             } else {
@@ -98,7 +113,9 @@ function generateGrid(){
                 //L'utente ha vinto.
                 //Il punteggio equivale al numero di celle senza bombe.
                 if(score === cellsWithoutBombs){
-                    alert(`Hai vinto, il tuo punteggio è ${score}`)
+                    proclamationElement.innerHTML = `Hai vinto! 
+                <br>
+                Hai totalizzato  ${score} punti.`;
                 }
             }
             console.log(score);
