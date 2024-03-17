@@ -87,16 +87,12 @@ main{
 
 }
 
-.colored{
+.safe{
     background-color: lightblue;
 }
 
 .bomb{
     background-color: red;
-}
-
-.clicked{
-    pointer-events: none;
 }
 
 /* FOOTER */

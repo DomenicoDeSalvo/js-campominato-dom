@@ -52,13 +52,12 @@ function generateGrid(){
        //Quando si clicca su una cella essa si colora di azzurro, se vi è una bomba, si colora di rosso.
         cellElement.addEventListener('click', function (){
             
-            cellElement.classList.add('clicked');
             if(bombsArray.includes(num)){
                 cellElement.classList.add('bomb');
 
             } else {
                 
-                cellElement.classList.add('colored');
+                cellElement.classList.add('safe');
             }
             //Viene stampato un console log in cui si dichiare quale cella è stata cliccata.
             console.log('È stata cliccata la cella numero ' + num);
