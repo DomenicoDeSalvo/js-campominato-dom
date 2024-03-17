@@ -90,17 +90,17 @@ function generateGrid(){
                 }
                 //L'utente ha perso.
                 if(score === 0){
-                    proclamationElement.innerHTML = `Hai perso. 
-                <br>
-                Non hai fatto nessun punto`;
+                    proclamationElement.innerHTML =`  
+                    <div>Hai perso.</div>                
+                    <div>Non hai fatto nessun punto.</div>`;
                 } else if(score === 1){
-                    proclamationElement.innerHTML = `Hai perso. 
-                <br>
-                Hai totalizzato  ${score} punto.`;
+                    proclamationElement.innerHTML =`  
+                    <div>Hai perso.</div>                
+                    <div>Hai totalizzato ${score} punto.</div>`;
                 } else {
-                proclamationElement.innerHTML = `Hai perso. 
-                <br>
-                Hai totalizzato  ${score} punti.`;
+                    proclamationElement.innerHTML =`  
+                    <div>Hai perso.</div>                
+                    <div>Hai totalizzato ${score} punti.</div>`;
                 }
             
             // La cella non contiene una bomba.
@@ -113,9 +113,9 @@ function generateGrid(){
                 //L'utente ha vinto.
                 //Il punteggio equivale al numero di celle senza bombe.
                 if(score === cellsWithoutBombs){
-                    proclamationElement.innerHTML = `Hai vinto! 
-                <br>
-                Hai totalizzato  ${score} punti.`;
+                    proclamationElement.innerHTML =`  
+                    <div>Hai vinto!.</div>                
+                    <div>Hai totalizzato ${score} punti.</div>`;
                 }
             }
             console.log(score);
