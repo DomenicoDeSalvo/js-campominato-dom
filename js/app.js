@@ -19,6 +19,7 @@ submitElement.addEventListener('click', generateGrid);
 function generateGrid(){
     //Cliccando il bottone la griglia prevedente sparirà per lasciare spazio ad una nuova.
     gridElement.innerHTML = ('');
+    proclamationElement.innerHTML = ('');
     difficulty = difficultyElement.value;//string
     //Quando la griglia viene generate vengono generate anche le bombe.
     //Il numero minimo sarà 1.
