@@ -42,6 +42,9 @@ function generateGrid(){
        
     }
 
+    //Quando la partita termina l'utente non deve più poter cliccare nessuna casella.
+    //Dichiarazione della variabile che dovrà controllare se la partita sia ancora in corso.
+    let GameOver = false;//Boolean
     //Dichiarazione della variabile che avrà il compito di tenere il conto dei punti.
     let score = 0; //Number
     //L'utente vincerà se avrà cliccato su tutte le caselle che non contengolo una bomba.
@@ -72,6 +75,11 @@ function generateGrid(){
 
        //Quando si clicca su una cella essa si colora di azzurro, se vi è una bomba, si colora di rosso.
         cellElement.addEventListener('click', function (){
+
+            //Se la partita è terminata non accadrà nulla.
+            if(GameOver === true){
+                return
+            }
             //Se la cella è già stata cliccata non accadrà nulla.
             if(clickedCells.includes(num)){
                 return
@@ -102,6 +110,8 @@ function generateGrid(){
                     <div>Hai perso.</div>                
                     <div>Hai totalizzato ${score} punti.</div>`;
                 }
+                //La partita è finita.
+                GameOver = true;
             
             // La cella non contiene una bomba.
             } else {
@@ -117,6 +127,8 @@ function generateGrid(){
                     <div>Hai vinto!.</div>                
                     <div>Hai totalizzato ${score} punti.</div>`;
                 }
+                //La partita è finita.
+                GameOver = true;
             }
             console.log(score);
         })
