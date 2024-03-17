@@ -33,8 +33,10 @@ function generateGrid(){
         const bombPosition = Math.floor(Math.random() * max) + min;
         //Controllare che non sia già nell'array.
         if(bombsArray.includes(bombPosition) === false){
+            //Includere il numero generato nell'array.
             bombsArray.push(bombPosition);
         }    
+       
     }
 
     //Dichiarazione della variabile che avrà il compito di tenere il conto dei punti.
@@ -44,6 +46,9 @@ function generateGrid(){
     
     //Dichiarazione dell`array che avrà  il compito di controllare se le caselle siano state già cliccate o meno.
     let clickedCells = []; //Array
+    // Se l'utente dovesse perdere, tutte le bombe dovranno essere mostrate. Deve essere quindi dichiarato un array in cui mettere tutte le celle per fare sí che in quel caso il sistema possa controllare tutte le celle con una bomba per poter applicare il colore.
+    //Array contenente tutte le celle.
+    const cellsArray = []; //Array
     // In base alla difficoltà verrà generata una griglia di dimensioni diverse.
     for(let i = 0; i < gridSize(difficulty); i++){
         
@@ -59,6 +64,8 @@ function generateGrid(){
         
         //Inserire le celle nel DOM.
         gridElement.append(cellElement);
+        //Inserire le celle nell'array che dovrà controllare se sono bombe o meno.
+        cellsArray.push(cellElement); 
 
        //Quando si clicca su una cella essa si colora di azzurro, se vi è una bomba, si colora di rosso.
         cellElement.addEventListener('click', function (){
@@ -66,13 +73,19 @@ function generateGrid(){
             if(clickedCells.includes(num)){
                 return
             }
-            //Se la cella viene cliccata per la prima volta, il numero viene aggiunto allárray di controllo.
+            //Se la cella viene cliccata per la prima volta, il numero viene aggiunto all'array di controllo.
             clickedCells.push(num);
 
             //La cella contiene una bomba.
             if(bombsArray.includes(num)){
-                //La cella si colora di rosso.
-                cellElement.classList.add('bomb');
+                //Tutte le celle contenenti bombe si colorano di rosso.
+                for(index2 = 0; index2 < cellsArray.length; index2++){
+                   const num2 = index2 + 1;//Number
+                   if(bombsArray.includes(num2)){
+                    cellsArray[index2].classList.add('bomb')
+                   }
+                }
+                //L'utente ha perso.
                 alert(`Hai perso, il tuo punteggio è ${score}`)
             
             // La cella non contiene una bomba.
