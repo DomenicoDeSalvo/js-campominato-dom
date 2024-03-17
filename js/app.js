@@ -33,6 +33,9 @@ function generateGrid(){
             bombsArray.push(bombPosition);
         }    
     }
+    
+    //Dichiarazione dellárray che avrà  il compito di controllare se le caselle siano state già cliccate o meno.
+    let clickedCells = []; //Array
     // In base alla difficoltà verrà generata una griglia di dimensioni diverse.
     for(let i = 0; i < gridSize(difficulty); i++){
         
@@ -51,12 +54,21 @@ function generateGrid(){
 
        //Quando si clicca su una cella essa si colora di azzurro, se vi è una bomba, si colora di rosso.
         cellElement.addEventListener('click', function (){
-            
-            if(bombsArray.includes(num)){
-                cellElement.classList.add('bomb');
+            //Se la cella è già stata cliccata non accadrà nulla.
+            if(clickedCells.includes(num)){
+                return
+            }
+            //Se la cella viene cliccata per la prima volta, il numero viene aggiunto allárray di controllo.
+            clickedCells.push(num);
 
+            //La cella contiene una bomba.
+            if(bombsArray.includes(num)){
+                //La cella si colora di rosso.
+                cellElement.classList.add('bomb');
+            
+            // La cella non contiene una bomba.
             } else {
-                
+                //La cella si colora diazzurro.
                 cellElement.classList.add('safe');
             }
             //Viene stampato un console log in cui si dichiare quale cella è stata cliccata.
