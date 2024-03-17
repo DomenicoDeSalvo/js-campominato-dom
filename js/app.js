@@ -126,9 +126,9 @@ function generateGrid(){
                     proclamationElement.innerHTML =`  
                     <div>Hai vinto!.</div>                
                     <div>Hai totalizzato ${score} punti.</div>`;
+                    //La partita è finita.
+                    GameOver = true;
                 }
-                //La partita è finita.
-                GameOver = true;
             }
             console.log(score);
         })
