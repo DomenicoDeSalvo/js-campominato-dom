@@ -18,7 +18,7 @@ body{
 }
 
 .container{
-    max-width:60%;
+    max-width:30%;
     margin: 0 auto;
 }
 
@@ -63,7 +63,7 @@ header{
 
 main{
     
-    max-height: calc(100% - 140px);
+    flex-grow: 1;
     overflow: auto;
 }
 
