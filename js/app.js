@@ -22,10 +22,13 @@ function generateGrid(){
     const min = 1;//Number
     //Il numero massimo corrisponderà al numero delle caselle della griglia per il dato livello.
     const max = gridSize(difficulty); //Number
+    //Generazione delle bombe.
+    //Le bombe saranno sempre 16.
     const bombs = 16; //Number
+    //Array con i numeri delle bombe.
     const bombsArray = []; //Array
     //Ciclo while per determinare i numeri.
-    while(bombsArray.length < 16){
+    while(bombsArray.length < bombs){
         //Generazione nuovo numero.
         const bombPosition = Math.floor(Math.random() * max) + min;
         //Controllare che non sia già nell'array.
@@ -33,8 +36,13 @@ function generateGrid(){
             bombsArray.push(bombPosition);
         }    
     }
+
+    //Dichiarazione della variabile che avrà il compito di tenere il conto dei punti.
+    let score = 0; //Number
+    //L'utente vincerà se avrà cliccato su tutte le caselle che non contengolo una bomba.
+    const cellsWithoutBombs = gridSize(difficulty) - bombsArray.length; //Number
     
-    //Dichiarazione dellárray che avrà  il compito di controllare se le caselle siano state già cliccate o meno.
+    //Dichiarazione dell`array che avrà  il compito di controllare se le caselle siano state già cliccate o meno.
     let clickedCells = []; //Array
     // In base alla difficoltà verrà generata una griglia di dimensioni diverse.
     for(let i = 0; i < gridSize(difficulty); i++){
@@ -65,14 +73,22 @@ function generateGrid(){
             if(bombsArray.includes(num)){
                 //La cella si colora di rosso.
                 cellElement.classList.add('bomb');
+                alert(`Hai perso, il tuo punteggio è ${score}`)
             
             // La cella non contiene una bomba.
             } else {
                 //La cella si colora diazzurro.
                 cellElement.classList.add('safe');
+                //Si aggiunge un punto al punteggio.
+                score++;
+
+                //L'utente ha vinto.
+                //Il punteggio equivale al numero di celle senza bombe.
+                if(score === cellsWithoutBombs){
+                    alert(`Hai vinto, il tuo punteggio è ${score}`)
+                }
             }
-            //Viene stampato un console log in cui si dichiare quale cella è stata cliccata.
-            console.log('È stata cliccata la cella numero ' + num);
+            console.log(score);
         })
         
     }
